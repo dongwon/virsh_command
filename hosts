@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#repo
+export POOL="kvm"
+export URL="qemu+ssh://root@repo.donga.ktc/system"
+
+#won
+#export POOL=second
+#export URL="qemu+ssh://root@won.donga.ktc/system"
+
+
