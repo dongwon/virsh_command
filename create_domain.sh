@@ -52,7 +52,7 @@ virt-install \
 --ram $RAM \
 --vcpus=$CPUS \
 --disk=$VOL_PATH,size=$DISK_SIZE,bus=virtio,cache=writeback,sparse=true,format=$FORMAT \
---network bridge=$BR1,model=virtio \
+--network bridge=$BR2,model=virtio \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
