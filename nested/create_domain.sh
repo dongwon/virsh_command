@@ -8,7 +8,8 @@ FORMAT=qcow2
 
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise/main/installer-amd64/"
-KS=http://repo.donga.ktc/ks/ubuntu-vm.cfg
+#PRE_CONF="ks=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
+PRE_CONF="url=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 
 BR1=br-ext
 BR2=br-int
@@ -39,4 +40,4 @@ virt-install \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
---extra-args "ks=$KS ksdevice=eth0 console=tty0 console=ttyS0,115200"
+--extra-args "$PRE_CONF ksdevice=eth0 console=tty0 console=ttyS0,115200"
