@@ -7,7 +7,8 @@ SEC_DISK_SIZE=300
 FORMAT=qcow2
 
 OS_VARIANT=ubuntuprecise
-LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise/main/installer-amd64/"
+LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
+#LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise/main/debian-installer/"
 #PRE_CONF="ks=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 PRE_CONF="url=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 
@@ -40,4 +41,4 @@ virt-install \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
---extra-args "$PRE_CONF ksdevice=eth0 console=tty0 console=ttyS0,115200"
+--extra-args "auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
