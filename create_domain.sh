@@ -3,9 +3,7 @@ DOMAIN_NAME=$1
 CPUS=1
 RAM=1024
 DISK_SIZE=8
-FORMAT=qcow2
-
-. ./hosts
+FORMAT=raw
 
 #OS_VARIANT=rhel5.4
 #LOCATION="http://repo.donga.ktc/mirrors/centos/5/os/x86_64/"
@@ -20,16 +18,16 @@ FORMAT=qcow2
 #KS=http://repo.donga.ktc/ks/rhel6.cfg
 
 OS_VARIANT=ubuntuprecise
-LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise/main/installer-amd64/"
-KS=http://repo.donga.ktc/ks/ubuntu.cfg
+LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
+PRE_CONF="url=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 
 BR1=br-ext
 BR2=br-int
 BR3=br-sec
 BR4=br-isol
 
-virsh --connect $URL vol-create-as $POOL $DOMAIN_NAME "$DISK_SIZE"G --allocation "$DISK_SIZE"G --format $FORMAT
-VOL_PATH=$(virsh --connect $URL vol-list --pool $POOL | grep $DOMAIN_NAME | awk '{print $2}')
+virsh vol-create-as $POOL $DOMAIN_NAME "$DISK_SIZE"G --allocation "$DISK_SIZE"G --format $FORMAT
+VOL_PATH=$(virsh vol-list --pool $POOL | grep $DOMAIN_NAME | awk '{print $2}')
 
 ## Installation using PXE
 #virt-install \
@@ -46,17 +44,17 @@ VOL_PATH=$(virsh --connect $URL vol-list --pool $POOL | grep $DOMAIN_NAME | awk 
 
 ## Installation using local location
 virt-install \
---connect $URL \
 --virt-type kvm \
 --name $DOMAIN_NAME \
 --ram $RAM \
 --vcpus=$CPUS \
 --disk=$VOL_PATH,size=$DISK_SIZE,bus=virtio,cache=writeback,sparse=true,format=$FORMAT \
+--network bridge=$BR1,model=virtio \
 --network bridge=$BR2,model=virtio \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
---extra-args "ks=$KS ksdevice=eth0 console=tty0 console=ttyS0,115200"
+--extra-args "auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
 
 

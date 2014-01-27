@@ -9,8 +9,6 @@ FORMAT=raw
 
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
-#LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise/main/debian-installer/"
-#PRE_CONF="ks=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 PRE_CONF="url=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
 
 BR1=br-ext
