@@ -4,7 +4,8 @@ CPUS=6
 RAM=10240
 PRI_DISK_SIZE=15
 SEC_DISK_SIZE=300
-FORMAT=qcow2
+FORMAT=raw
+#FORMAT=qcow2
 
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
