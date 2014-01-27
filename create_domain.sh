@@ -1,9 +1,10 @@
 #!/bin/bash
 DOMAIN_NAME=$1
 CPUS=1
-RAM=1024
+RAM=2024
 DISK_SIZE=8
 FORMAT=raw
+POOL=disk
 
 #OS_VARIANT=rhel5.4
 #LOCATION="http://repo.donga.ktc/mirrors/centos/5/os/x86_64/"
