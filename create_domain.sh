@@ -7,20 +7,20 @@ FORMAT=raw
 POOL=disk
 
 #OS_VARIANT=rhel5.4
-#LOCATION="http://repo.donga.ktc/mirrors/centos/5/os/x86_64/"
-#LOCATION="http://repo.donga.ktc/mirrors/rhel/5/"
-#KS=http://repo.donga.ktc/ks/centos5.cfg
-#KS=http://repo.donga.ktc/ks/rhel5.cfg
+#LOCATION="http://repo.cloud/mirrors/centos/5/os/x86_64/"
+#LOCATION="http://repo.cloud/mirrors/rhel/5/"
+#KS=http://repo.cloud/ks/centos5.cfg
+#KS=http://repo.cloud/ks/rhel5.cfg
 
 #OS_VARIANT=rhel6
-#LOCATION="http://repo.donga.ktc/mirrors/centos/6/os/x86_64/"
-#LOCATION="http://repo.donga.ktc/mirrors/rhel/6/"
-#KS=http://repo.donga.ktc/ks/centos6.cfg
-#KS=http://repo.donga.ktc/ks/rhel6.cfg
+#LOCATION="http://repo.cloud/mirrors/centos/6/os/x86_64/"
+#LOCATION="http://repo.cloud/mirrors/rhel/6/"
+#KS=http://repo.cloud/ks/centos6.cfg
+#KS=http://repo.cloud/ks/rhel6.cfg
 
 OS_VARIANT=ubuntuprecise
-LOCATION="http://repo.donga.ktc/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
-PRE_CONF="url=http://repo.donga.ktc/ks/ubuntu-vm.cfg"
+LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
+PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
 
 BR1=br-ext
 BR2=br-int
