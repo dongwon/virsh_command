@@ -1,8 +1,8 @@
 #!/bin/bash
 DOMAIN_NAME=$1
 CPUS=1
-RAM=2024
-DISK_SIZE=8
+RAM=4096
+DISK_SIZE=300
 FORMAT=raw
 POOL=disk
 
@@ -17,10 +17,12 @@ POOL=disk
 #LOCATION="http://repo.cloud/mirrors/rhel/6/"
 #KS=http://repo.cloud/ks/centos6.cfg
 #KS=http://repo.cloud/ks/rhel6.cfg
+#EXTRA_ARGS="auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
 PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
+EXTRA_ARGS="auto=true hostname=$1.cloud interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
 BR1=br-ext
 BR2=br-int
@@ -44,7 +46,7 @@ VOL_PATH=$(virsh vol-list --pool $POOL | grep $DOMAIN_NAME | awk '{print $2}')
 #--pxe \
 
 ## Installation using local location
-virt-install \
+sudo virt-install \
 --virt-type kvm \
 --name $DOMAIN_NAME \
 --ram $RAM \
@@ -55,7 +57,7 @@ virt-install \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
---extra-args "auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
+--extra-args "$EXTRA_ARGS"
 
 
 

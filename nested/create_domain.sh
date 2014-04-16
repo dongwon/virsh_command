@@ -10,6 +10,7 @@ FORMAT=raw
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
 PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
+EXTRA_ARGS="auto=true hostname=$1.cloud interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
 BR1=br-ext
 BR2=br-int
@@ -27,7 +28,7 @@ SEC_VOL_PATH=$(virsh vol-list --pool $SEC_POOL | grep $DOMAIN_NAME | awk '{print
 
 
 ## Installation using local location
-virt-install \
+sudo virt-install \
 --virt-type kvm \
 --name $DOMAIN_NAME \
 --ram $RAM \
@@ -40,4 +41,4 @@ virt-install \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
---extra-args "auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
+--extra-args "$EXTRA_ARGS"
