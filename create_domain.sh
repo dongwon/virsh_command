@@ -22,7 +22,7 @@ POOL=disk
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
 PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
-EXTRA_ARGS="auto=true hostname=$1.cloud interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
+EXTRA_ARGS="auto=true hostname=$1 interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
 BR1=br-ext
 BR2=br-int
