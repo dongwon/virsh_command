@@ -4,8 +4,7 @@ CPUS=6
 RAM=10240
 PRI_DISK_SIZE=15
 SEC_DISK_SIZE=300
-FORMAT=raw
-#FORMAT=qcow2
+FORMAT=qcow2
 
 OS_VARIANT=ubuntuprecise
 LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
@@ -21,10 +20,12 @@ SEC_POOL=disk
 # PRI(SSD)
 virsh vol-create-as $PRI_POOL $DOMAIN_NAME "$PRI_DISK_SIZE"G --allocation "$PRI_DISK_SIZE"G --format $FORMAT
 PRI_VOL_PATH=$(virsh vol-list --pool $PRI_POOL | grep $DOMAIN_NAME | awk '{print $2}')
-
 # SEC(DISK)
 virsh vol-create-as $SEC_POOL $DOMAIN_NAME "$SEC_DISK_SIZE"G --allocation "$SEC_DISK_SIZE"G --format $FORMAT
 SEC_VOL_PATH=$(virsh vol-list --pool $SEC_POOL | grep $DOMAIN_NAME | awk '{print $2}')
+
+#for DISK
+#echo -e ""
 
 
 ## Installation using local location
