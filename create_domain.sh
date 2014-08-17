@@ -6,6 +6,8 @@ DISK_SIZE=300
 FORMAT=qcow2
 POOL=disk
 
+#virt-install --os-variant list
+
 #OS_VARIANT=rhel5.4
 #LOCATION="http://repo.cloud/mirrors/centos/5/os/x86_64/"
 #LOCATION="http://repo.cloud/mirrors/rhel/5/"
