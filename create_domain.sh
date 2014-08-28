@@ -1,10 +1,10 @@
 #!/bin/bash
 DOMAIN_NAME=$1
 CPUS=1
-RAM=4096
-DISK_SIZE=300
+RAM=1024
+DISK_SIZE=8
 FORMAT=qcow2
-POOL=disk
+POOL=SSD250
 
 #virt-install --os-variant list
 
@@ -21,15 +21,20 @@ POOL=disk
 #KS=http://repo.cloud/ks/rhel6.cfg
 #EXTRA_ARGS="auto=true hostname=precise interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
-OS_VARIANT=ubuntuprecise
-LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
-PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
+#OS_VARIANT=ubuntuprecise
+#LOCATION="http://repo.cloud/mirrors/ubuntu/dists/precise-updates/main/installer-amd64/"
+#PRE_CONF="url=http://repo.cloud/ks/ubuntu-vm.cfg"
+#EXTRA_ARGS="auto=true hostname=$1 interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
+
+OS_VARIANT=ubuntutrusty
+LOCATION="http://kr.archive.ubuntu.com/ubuntu/dists/trusty-updates/main/installer-amd64/"
+PRE_CONF="url=http://repo.cloud/ubuntu-vm.cfg"
 EXTRA_ARGS="auto=true hostname=$1 interface=eth0 $PRE_CONF console=tty0 console=ttyS0,115200"
 
-BR1=br-ext
-BR2=br-int
-BR3=br-sec
-BR4=br-isol
+BR1=ovs-ext
+BR2=ovs-int1
+BR3=ovs-int3
+BR4=ovs-int4
 
 virsh vol-create-as $POOL $DOMAIN_NAME "$DISK_SIZE"G --allocation "$DISK_SIZE"G --format $FORMAT
 VOL_PATH=$(virsh vol-list --pool $POOL | grep $DOMAIN_NAME | awk '{print $2}')
@@ -54,8 +59,7 @@ sudo virt-install \
 --ram $RAM \
 --vcpus=$CPUS \
 --disk=$VOL_PATH,size=$DISK_SIZE,bus=virtio,cache=writeback,sparse=true,format=$FORMAT \
---network bridge=$BR1,model=virtio \
---network bridge=$BR2,model=virtio \
+--network=$BR1 \
 --os-variant $OS_VARIANT \
 --location=$LOCATION \
 --graphics none \
